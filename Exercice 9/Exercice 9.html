@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Christmas Countdown</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f0f0f0;
+      }
+      h1 {
+        color: #333;
+      }
+      #countdown {
+        font-size: 24px;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Days left before Christmas</h1>
+    <div id="countdown"></div>
+
+    <script>
+      function updateCountdown() {
+        const currentDate = new Date();
+        const christmasDate = new Date(currentDate.getFullYear(), 11, 25);
+        const timeDifference = christmasDate - currentDate;
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        document.getElementById(
+          "countdown"
+        ).innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
